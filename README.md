@@ -1,6 +1,6 @@
 # Echo Ling · 听言英语
 
-> 一款面向国内英语学习者的 Android 原生应用，**完全离线运行**：本地 Vosk 语音识别 + 离线词典，无需任何 API key 或网络连接。
+> 一款面向国内英语学习者的 Android 原生应用，**完全离线运行**：本地语音识别，文字识别，跟读练习包括泛听，精听和测试。直接导入自己喜欢的音频/视频/字幕文件进行离线学习。同时自带离线词典，提供离线翻译和涵盖小学/初中/高中/四级/六级/雅思等单词的学习。无需任何 API key 或网络连接。
 
 [![Release v1.1](https://img.shields.io/badge/release-v1.1-7C3AED)](https://github.com/ryming213/EchoLing/releases/tag/v1.1)
 [![Android](https://img.shields.io/badge/Android-26%2B-3DDC84)](#-开发环境)
@@ -17,9 +17,8 @@
 
 - 11 个预置词库（小学 / 初中 / 高中 / CET-4 / CET-6 / 雅思 / 托福 / 考研 / GRE / BEC / TEM-8），共 **~26000+ 词**
 - 闪卡复习：Y 轴 3D 翻转动画 + 正方形卡片，**逐张记录「认识 / 不认识」进度**
-- **进程被杀 / 切 tab 后进度不丢**（Room v5 `recite_progress` 表持久化）
-- 闪卡正面 / 反面 / 生词本每个单词配 **TTS 喇叭按钮**（内置 + 多引擎 fallback）
-- 例句展示（英文 + 中文翻译对照）
+- 闪卡正面 为英文单词和包含该单词的英文例句，并配有喇叭按钮，实现单词发音和句子发音
+- 闪卡背面 为单词的中文翻译和英文例句中文翻译，方便对照学习
 
 ### 🎬 自动字幕生成 · 完全离线
 
@@ -62,6 +61,10 @@
 - 行高紧凑化（8dp vertical padding + 4dp/2dp spacer）
 
 ---
+
+### 🎬 APP展示
+
+
 
 ## 🏗️ 技术栈
 
@@ -123,21 +126,6 @@ app/src/main/java/com/echoling/app/
 - 所有 UseCase `@Singleton + @Inject constructor`，无需 Module
 - TTS / AudioPlayer / VoskRecognizer 等副作用服务**跳过 UseCase 层**（与 `AudioPlayer` 同类）
 - `practice/*` 页面三 Tab 共享 `PracticeViewModel`，每个 Tab 独立 `PracticePage` 枚举隔离状态
-
----
-
-## 🎨 品牌色板（CLAUDE.md §11.2 锁定）
-
-| Token | 值 | 用途 |
-|---|---|---|
-| Primary | `#7C3AED` (violet-600) | 主强调色，CTA 按钮 / icon tint |
-| OnPrimary | `#FFFFFF` | Primary 上文字 |
-| PrimaryContainer | `#DDD6FE` (violet-200) | Continue Learning 卡片背景 / 今日热力格 |
-| Secondary | `#8B5CF6` (violet-500) | 次级强调 |
-| Tertiary | `#6D28D9` (violet-700) | accent bar / 深紫装饰 |
-| InversePrimary | `#A78BFA` (violet-400) | 深色主题主色 / 装饰紫 |
-
-**反例**：`A78BFA` 不适合做 CTA 按钮（太浅不像紫色），仅用于装饰 / 品牌栏 / 弱对比。
 
 ---
 
